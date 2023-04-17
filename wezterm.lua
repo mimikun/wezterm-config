@@ -101,10 +101,12 @@ local colors = {
       fg_color = base_colors["dark"],
     },
     -- plus button hidden
+    --[[
     new_tab = {
       bg_color = base_colors["dark"],
       fg_color = base_colors["dark"],
     },
+    ]]
   },
 }
 
@@ -117,10 +119,10 @@ local colors = {
 local leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 local act = wezterm.action
 local keys = {
-  -- CMD + cでタブを新規作成
-  { key = "c", mods = "LEADER", action = act({ SpawnTab = "CurrentPaneDomain" }) },
-  -- CMD + xでタブを閉じる
-  { key = "x", mods = "LEADER", action = act({ CloseCurrentTab = { confirm = true } }) },
+  -- CMD + Tでタブを新規作成
+  { key = "t", mods = "LEADER", action = act({ SpawnTab = "CurrentPaneDomain" }) },
+  -- CMD + Wでタブを閉じる
+  { key = "w", mods = "LEADER", action = act({ CloseCurrentTab = { confirm = true } }) },
   -- CTRL + q + numberでタブの切り替え
   { key = "1", mods = "LEADER", action = act({ ActivateTab = 0 }) },
   { key = "2", mods = "LEADER", action = act({ ActivateTab = 1 }) },
@@ -161,7 +163,7 @@ return {
   colors = colors,
   leader = leader,
   keys = keys,
-  --font = wezterm.font("FiraCode Nerd Font Mono", { weight = 450, stretch = "Normal", style = "Normal" }),
+  font = wezterm.font("FiraCode Nerd Font Mono", { weight = 450, stretch = "Normal", style = "Normal" }),
   font_size = 12,
   line_height = 1,
   use_fancy_tab_bar = false,
@@ -170,4 +172,6 @@ return {
     saturation = 1,
     brightness = 1,
   },
+  use_ime = true,
+  default_prog = { "wsl.exe", "--distribution", "Ubuntu-20.04", "--cd", "~" },
 }
