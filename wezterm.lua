@@ -158,7 +158,7 @@ local keys = {
 --local default_cwd = os.getenv('HOME')..'/Documents/'
 
 return {
-  color_scheme = "github_dark",
+  color_scheme = "GitHub Dark",
   default_cwd = default_cwd,
   colors = colors,
   leader = leader,
@@ -173,5 +173,8 @@ return {
     brightness = 1,
   },
   use_ime = true,
-  default_prog = { "wsl.exe", "--distribution", "Ubuntu-20.04", "--cd", "~" },
+  -- Home PC
+  default_prog = { "wsl.exe", "--distribution", "Ubuntu", "--cd", "~" },
+  -- Work PC
+  --default_prog = { "wsl.exe", "--distribution", "Ubuntu-20.04", "--cd", "~" },
 }
