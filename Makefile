@@ -2,6 +2,9 @@ today   = $(shell date "+%Y%m%d")
 product_name = wezterm-config
 gpg_pub_key = CCAA9E0638DF9088BB624BC37C0F8AD3FB3938FC
 
+.PHONY : default
+default : run
+
 .PHONY : patch
 patch : clean diff-patch copy2win-patch
 
