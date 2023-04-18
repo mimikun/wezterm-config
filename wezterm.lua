@@ -73,11 +73,6 @@ config.colors = {
       bg_color = "aliceblue",
       fg_color = base_colors["dark"],
     },
-    -- plus button hidden
-    new_tab = {
-      bg_color = base_colors["dark"],
-      fg_color = base_colors["dark"],
-    },
   },
 }
 
