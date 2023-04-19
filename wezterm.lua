@@ -1,3 +1,4 @@
+-- 参考: https://karukichi-blog.netlify.app/blogs/wezterm
 local wezterm = require("wezterm")
 
 local config = {}
@@ -202,20 +203,75 @@ config.keys = {
   },
 }
 
+-- フォントを FiraCode Nerd Font Mono にする
 config.font = wezterm.font("FiraCode Nerd Font Mono", { weight = 450, stretch = "Normal", style = "Normal" })
+-- フォントサイズを 12 にする
 config.font_size = 12
+-- 行の高さを 1 にする
 config.line_height = 1
+-- カラースキームを GitHub Dark にする
 config.color_scheme = "GitHub Dark"
 config.use_fancy_tab_bar = false
+-- IME を使用する
 config.use_ime = true
 -- アクティブではないペインの彩度を変更しない
 config.inactive_pane_hsb = {
   saturation = 1,
   brightness = 1,
 }
+
+local work_pc_wsl = "WSL:Ubuntu-20.04"
+local home_pc_wsl = "WSL:Ubuntu"
+
+-- デフォルトで開かれるものを決める
 -- Work PC
---config.default_domain = "WSL:Ubuntu-20.04"
+--config.default_domain = work_pc_wsl
 -- Home PC
-config.default_domain = "WSL:Ubuntu"
+config.default_domain = home_pc_wsl
+
+-- ランチャーメニュー(+ ボタン右クリックで出る) を設定する
+config.launch_menu = {
+  {
+    label = "WSL Ubuntu",
+    domain = {
+      -- Work PC
+      --DomainName = work_pc_wsl,
+      -- Home PC
+      DomainName = home_pc_wsl,
+    },
+  },
+  {
+    label = "Windows PowerShell v5",
+    domain = {
+      DomainName = "local",
+    },
+    args = { "powershell.exe" },
+  },
+  {
+    label = "Windows PowerShell v7",
+    domain = {
+      DomainName = "local",
+    },
+    args = { "pwsh.exe" },
+  },
+  {
+    label = "Windows cmd.exe",
+    domain = {
+      DomainName = "local",
+    },
+  },
+}
+
+-- 画面の初期サイズを決める
+-- https://wezfurlong.org/wezterm/config/lua/config/initial_rows.html
+-- https://wezfurlong.org/wezterm/config/lua/config/initial_cols.html
+config.initial_rows = 30
+config.initial_cols = 120
+
+-- debug info
+wezterm.log_error("Exe dir " .. wezterm.executable_dir)
+wezterm.log_error("Home dir " .. wezterm.home_dir)
+wezterm.log_error("Hostname " .. wezterm.hostname())
+wezterm.log_error("Version " .. wezterm.version)
 
 return config
