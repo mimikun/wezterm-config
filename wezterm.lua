@@ -220,24 +220,25 @@ config.inactive_pane_hsb = {
   brightness = 1,
 }
 
-local work_pc_wsl = "WSL:Ubuntu-20.04"
-local home_pc_wsl = "WSL:Ubuntu"
+local hostname = wezterm.hostname()
+local wsl_domain
+if hostname == "TanakaPC" then
+  -- Work PC
+  wsl_domain = "WSL:Ubuntu-20.04"
+else
+  -- Home PC
+  wsl_domain = "WSL:Ubuntu"
+end
 
 -- デフォルトで開かれるものを決める
--- Work PC
---config.default_domain = work_pc_wsl
--- Home PC
-config.default_domain = home_pc_wsl
+config.default_domain = wsl_domain
 
 -- ランチャーメニュー(+ ボタン右クリックで出る) を設定する
 config.launch_menu = {
   {
     label = "WSL Ubuntu",
     domain = {
-      -- Work PC
-      --DomainName = work_pc_wsl,
-      -- Home PC
-      DomainName = home_pc_wsl,
+      DomainName = wsl_domain,
     },
   },
   {
@@ -268,10 +269,8 @@ config.launch_menu = {
 config.initial_rows = 30
 config.initial_cols = 120
 
--- debug info
-wezterm.log_error("Exe dir " .. wezterm.executable_dir)
-wezterm.log_error("Home dir " .. wezterm.home_dir)
-wezterm.log_error("Hostname " .. wezterm.hostname())
-wezterm.log_error("Version " .. wezterm.version)
+-- Unicode のバージョンを指定する
+-- https://wezfurlong.org/wezterm/config/lua/config/unicode_version.html
+--config.unicode_version = 9
 
 return config
