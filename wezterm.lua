@@ -7,6 +7,20 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+-- デバッグ用
+local function debug_log_print()
+  wezterm.log_info("Config Dir " .. wezterm.config_dir)
+  wezterm.log_info("Config file " .. wezterm.config_file)
+  wezterm.log_info("Default hyperlink rules " .. wezterm.default_hyperlink_rules())
+  wezterm.log_info("Version " .. wezterm.version)
+  wezterm.log_info("Exe dir " .. wezterm.executable_dir)
+  wezterm.log_info("Default ssh domains" .. wezterm.default_ssh_domains())
+  wezterm.log_info("Default wsl domains" .. wezterm.default_wsl_domains())
+  wezterm.log_info("Hostname" .. wezterm.hostname())
+  wezterm.log_info("Running under wsl" .. tostring(wezterm.running_under_wsl()))
+  config.debug_key_events = true
+end
+
 -- os.dateによって返却された数値から曜日を判定し、漢字に変換する
 -- (曜日, 1–7, 日曜日が 1)
 local function day_of_week_ja(w_num)
@@ -272,5 +286,8 @@ config.initial_cols = 120
 -- Unicode のバージョンを指定する
 -- https://wezfurlong.org/wezterm/config/lua/config/unicode_version.html
 --config.unicode_version = 9
+
+-- Print debug log
+debug_log_print()
 
 return config
