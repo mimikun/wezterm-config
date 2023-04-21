@@ -9,13 +9,13 @@ end
 
 -- デバッグ用
 local function debug_log_print()
+  --wezterm.log_info("Default hyperlink rules " .. wezterm.default_hyperlink_rules())
+  --wezterm.log_info("Default ssh domains" .. wezterm.default_ssh_domains())
+  --wezterm.log_info("Default wsl domains" .. wezterm.default_wsl_domains())
   wezterm.log_info("Config Dir " .. wezterm.config_dir)
   wezterm.log_info("Config file " .. wezterm.config_file)
-  --wezterm.log_info("Default hyperlink rules " .. wezterm.default_hyperlink_rules())
   wezterm.log_info("Version " .. wezterm.version)
   wezterm.log_info("Exe dir " .. wezterm.executable_dir)
-  wezterm.log_info("Default ssh domains" .. wezterm.default_ssh_domains())
-  wezterm.log_info("Default wsl domains" .. wezterm.default_wsl_domains())
   wezterm.log_info("Hostname" .. wezterm.hostname())
   wezterm.log_info("Running under wsl" .. tostring(wezterm.running_under_wsl()))
   config.debug_key_events = true
