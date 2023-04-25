@@ -23,23 +23,7 @@ end
 
 -- os.dateによって返却された数値から曜日を判定し、漢字に変換する
 -- (曜日, 1–7, 日曜日が 1)
-local function day_of_week_ja(w_num)
-  if w_num == 1 then
-    return "日"
-  elseif w_num == 2 then
-    return "月"
-  elseif w_num == 3 then
-    return "火"
-  elseif w_num == 4 then
-    return "水"
-  elseif w_num == 5 then
-    return "木"
-  elseif w_num == 6 then
-    return "金"
-  elseif w_num == 7 then
-    return "土"
-  end
-end
+local day_of_week_ja = { "日", "月", "火", "水", "木", "金", "土" }
 
 -- 年月日と時間をステータスバーに表示する
 -- ウィンドウが最初に表示されてから1秒後に開始され、1秒に1回トリガーされるイベント
@@ -48,7 +32,7 @@ wezterm.on("update-status", function(window, pane)
   -- NOTE: https://www.lua.org/pil/22.1.html
   local wday = os.date("*t").wday
   -- 指定子の後に半角スペースをつけないと正常に表示されなかった
-  local wday_ja = string.format("(%s)", day_of_week_ja(wday))
+  local wday_ja = string.format("(%s)", day_of_week_ja[wday])
   local date = wezterm.strftime("📆 %Y-%m-%d " .. wday_ja .. " ⏰ %H:%M:%S")
 
   window:set_right_status(wezterm.format({
