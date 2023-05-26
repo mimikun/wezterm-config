@@ -145,7 +145,8 @@ config.keys = {
   },
   -- PANEを縦方向に開く
   {
-    key = "|",
+    -- | は入力がうまくいかないのでバックスラッシュのキーに置き換える
+    key = "\\",
     mods = "LEADER",
     action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
   },
